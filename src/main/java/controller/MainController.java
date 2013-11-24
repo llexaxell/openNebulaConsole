@@ -10,65 +10,46 @@ import view.ConsoleOpenNebula;
 public class MainController {
 	private ConsoleOpenNebula consoleOpenNebula;
 	private Infrastructure model;
-	private UserController userControl = new UserController(this);
+	private UserController userControl;
 
 	//Constructeurs
 	
-	public MainController(){}
+	public MainController(){
+		this.userControl = new UserController(this);
+		this.model = new Infrastructure(this);
+	}
 	
 	public MainController(ConsoleOpenNebula console, Infrastructure model) {
+		this.userControl = new UserController(this);
 		this.consoleOpenNebula = console;
 		this.model = model;
 	}
-	
+	/**
+	 * Show a message in the console
+	 * @param message
+	 */
 	public void showMessage(String message){
-		System.out.println(message+"\n");
+		System.out.println(message);
 	}
 	
+	/**
+	 * Ask a question and get a clear answer
+	 * @param question
+	 * @return
+	 */
 	public String askQuestion(String question){
-		System.out.println(question+"\n");
-		String answer ="";
+		System.out.println(question);
+		String answer = "";
 		try{
 		    BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 		    answer = bufferRead.readLine();
-		}
-		catch(IOException e)
-		{
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		return answer;
 	}
 	
-	public String askQuestionWithSecreteAnswer(String question){
-		String password = "";
-        ConsoleEraser consoleEraser = new ConsoleEraser();
-        System.out.print(question);
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        consoleEraser.start();
-        try {
-            password = in.readLine();
-        }
-        catch (IOException e){
-            System.out.println("Error trying to read your password!");
-            System.exit(1);
-        }
- 
-        consoleEraser.halt();
-        return password;
-	}
 	
-	private static class ConsoleEraser extends Thread {
-        private boolean running = true;
-        public void run() {
-            while (running) {
-                System.out.print("\b ");
-            }
-        }
-        public synchronized void halt() {
-            running = false;
-        }
-    }
-
 	
 //	Getter and setters
 	

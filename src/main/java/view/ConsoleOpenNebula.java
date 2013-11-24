@@ -11,8 +11,6 @@ import controller.MainController;
  */
 public class ConsoleOpenNebula {
 
-	
-	
 	/**
 	 * @param args
 	 */
@@ -21,6 +19,6 @@ public class ConsoleOpenNebula {
 		Infrastructure model = new Infrastructure();
 		ResourceBundle bundle1 = ResourceBundle.getBundle("language");
 		controller.getUserControl().createUser();
-		
-	  }
+		controller.getUserControl().connexion();
+	}
 }
