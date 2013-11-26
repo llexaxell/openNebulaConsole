@@ -74,7 +74,7 @@ public class UserController {
 	 */
 	private void exploreModel(Client client, ServiceNode mainNode) {
 		mainNode.setOpenNebulaVersion(client.get_version().getMessage());
-
+		
 		HostPool host = new HostPool(client);
 		mainNode.setNumberVm(host.getLength());
 		
@@ -82,7 +82,6 @@ public class UserController {
 
 		//System.out.println("info : "+host.info().getMessage());
 		// VirtualPoolMachine
-
 		VirtualMachinePool pool = new VirtualMachinePool(client);
 		//initialise the pool
 		pool.info();
@@ -100,6 +99,9 @@ public class UserController {
 			listVm.add(vmModel);
 		}
 		mainNode.setVms(listVm);
+		
+		System.out.println(pool.info().getMessage());
+		System.out.println(poolNode.info().getMessage());
 		
 		
 		Iterator<Host> itHost = poolNode.iterator();

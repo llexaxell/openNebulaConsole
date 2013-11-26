@@ -8,10 +8,8 @@ public class Vm {
 	private VirtualMachine vm;
 	private String statut;
 	private String name;
-	private String freeMem;
-	private String usedMem;
-	private String freeCPU;
-	private String usedCPU;
+	private String Mem;
+	private String CPU;
 	private String nameNodeParent;
 	private String idNodeParent;
 
@@ -21,10 +19,8 @@ public class Vm {
 		this.id = vm.getId();
 		this.statut = vm.lcmStateStr();
 		this.name = vm.getName();
-		this.freeMem = vm.xpath("HOST_SHARE/FREE_MEM");
-		this.setUsedMem(vm.xpath("HOST_SHARE/USED_MEM"));
-		this.setFreeCPU(vm.xpath("HOST_SHARE/FREE_CPU"));
-		this.setUsedCPU(vm.xpath("HOST_SHARE/USED_CPU"));
+		this.setMem(vm.xpath("MEMORY"));
+		this.setCPU(vm.xpath("CPU"));
 		
 	}
 	//Actions on the instance
@@ -82,14 +78,6 @@ public class Vm {
 		this.name = name;
 	}
 
-	public String getFreeMem() {
-		return freeMem;
-	}
-
-	public void setFreeMem(String freeMem) {
-		this.freeMem = freeMem;
-	}
-
 	public String getNameNodeParent() {
 		return nameNodeParent;
 	}
@@ -111,25 +99,16 @@ public class Vm {
 	public void setVm(VirtualMachine vm) {
 		this.vm = vm;
 	}
-	public String getUsedMem() {
-		return usedMem;
+	public String getMem() {
+		return Mem;
 	}
-	public void setUsedMem(String usedMem) {
-		this.usedMem = usedMem;
+	public void setMem(String mem) {
+		Mem = mem;
 	}
-	public String getFreeCPU() {
-		return freeCPU;
+	public String getCPU() {
+		return CPU;
 	}
-	public void setFreeCPU(String freeCPU) {
-		this.freeCPU = freeCPU;
+	public void setCPU(String cPU) {
+		CPU = cPU;
 	}
-	public String getUsedCPU() {
-		return usedCPU;
-	}
-	public void setUsedCPU(String usedCPU) {
-		this.usedCPU = usedCPU;
-	}
-	
-	
-	
 }

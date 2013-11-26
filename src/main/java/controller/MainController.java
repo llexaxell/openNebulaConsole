@@ -115,11 +115,11 @@ public class MainController {
 			break;
 		//Migrer à chaud une machine virtuelle
 		case 3:
-			describeInfra.deleteVm(vmId);
+			describeInfra.migrateVm(vmId);
 			this.showMenu();
 			break;
 		case 4:
-			describeInfra.migrateVm(vmId);
+			describeInfra.deleteVm(vmId);
 			this.showMenu();
 			break;
 		default:
