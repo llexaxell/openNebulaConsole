@@ -60,17 +60,22 @@ public class MainController {
 		System.out.println("2) Afficher le détail de chaque machine virtuelle");
 		System.out.println("3) Afficher le nombre de nœuds");
 		System.out.println("4) Afficher le détail de chaque nœud");
-		System.out.println("5) Suspendre et reprendre l’exécution d’une machine virtuelle donnée");
-		System.out.println("6) Migrer à chaud une machine virtuelle donnée");
-		System.out.println("7) Détruire une machine virtuelle donnée");
+	
 		
 		String answer = askQuestion("Choix : ");
-		launchQuery(answer);
+		launchQueryPrincipalMenu(answer);
+	}
+	public void showVmMenu() throws IOException {
+		System.out.println("1) Suspendre l’exécution d’une machine virtuelle donnée");
+		System.out.println("2) Reprendre l’exécution d’une machine virtuelle donnée");
+		System.out.println("3) Migrer à chaud une machine virtuelle");
+		System.out.println("4) Détruire une machine virtuelle");
+		String answer = askQuestion("Choix : ");
+		launchQueryVMMenu(answer);
 	}
 	
 	
-	
-	private void launchQuery(String answer) throws IOException {
+	private void launchQueryPrincipalMenu(String answer) throws IOException {
 		int in  = Integer.parseInt(answer);
 		switch (in) {
 		//Afficher le nombre de machines virtuelles
@@ -81,9 +86,38 @@ public class MainController {
 			describeInfra.describeAllVm();
 			break;
 		case 3:
-			
+			describeInfra.getNumberOfNode();
 			break;
-
+		case 4:
+			describeInfra.describeAllNodes();
+			break;
+		default:
+			this.showMenu();
+			break;
+		}
+	}
+	
+	
+	private void launchQueryVMMenu(String answer) throws IOException {
+		String vmId = askQuestion("Choix de la vm (id) : ");
+		int in  = Integer.parseInt(answer);
+		
+		switch (in) {
+		//Suspendre l'activité d'une VM
+		case 1:
+			describeInfra.breakActivityVm(vmId);
+			break;
+		//Reprise de l'activité pour la vm
+		case 2:
+			describeInfra.unPauseActiviteVm(vmId);
+			break;
+		//Migrer à chaud une machine virtuelle
+		case 3:
+			describeInfra.deleteVm(vmId);
+			break;
+		case 4:
+			describeInfra.migrateVm(vmId);
+			break;	
 		default:
 			this.showMenu();
 			break;

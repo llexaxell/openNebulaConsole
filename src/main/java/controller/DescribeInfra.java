@@ -43,7 +43,7 @@ public class DescribeInfra {
 				out += "VM " + vm.getId() +" -------------------\n";
 			    out += "Nom de la VM : " + vm.getName() +"\n";;
 			    out += "Statut de la VM : " + vm.getStatut() +"\n";; 
-			    out += "Mémoire libre : "+ vm.getFreeMem();
+			    out += "Mémoire libre : "+ vm.getFreeMem() +" | Mémoire utilisé : " +vm.getUsedMem();
 			}
 			System.out.println(out);
 		}else {
@@ -59,6 +59,42 @@ public class DescribeInfra {
 
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
+	}
+
+
+	public void getNumberOfNode() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void describeAllNodes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void migrateVm(String vmId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void deleteVm(String vmId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void unPauseActiviteVm(String vmId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void breakActivityVm(String vmId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
