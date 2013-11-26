@@ -50,12 +50,12 @@ public class DescribeInfra {
 			    out += "--------------------------------------------------\n";
 			    out += " + Mémoire : "+ vm.getMem() +"o | CPU : " +vm.getCPU() +"% +\n"; 
 			    out += "--------------------------------------------------\n";
-			    out += "Noeud parent : " + vm.getNameNodeParent() + " (id : "+vm.getIdNodeParent()+")";
+			    out += "Noeud parent : " + vm.getNameNodeParent() + " (id : "+vm.getIdNodeParent()+")\n\n";
 			    
 			}
 			System.out.println(out);
 		}else {
-			System.out.println("Pas d'instance");
+			System.out.println("Pas d'instance\n\n");
 		}
 		mainController.showVmMenu();
 	}
@@ -90,11 +90,11 @@ public class DescribeInfra {
 			    out += "--------------------------------------------------------\n";
 			    out += "+ Processeur libre : "+ node.getProcessorFree() +" % | Processeur utilisé : " +node.getProcessorUsed() +"%   +\n"; 
 			    out += "--------------------------------------------------------\n";
-			    out += "Hyperviseur : "+node.getHypervisor()+"\n";
+			    out += "Hyperviseur : "+node.getHypervisor()+"\n\n";
 			}
 			System.out.println(out);
 		}else {
-			System.out.println("Pas de noeud");
+			System.out.println("Pas de noeud\n\n");
 		}
 		mainController.showMenu();
 	}

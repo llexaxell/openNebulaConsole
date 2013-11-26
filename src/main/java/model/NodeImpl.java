@@ -19,4 +19,24 @@ public class NodeImpl extends AbstractNode {
 		this.setProcessorInformation(host.xpath("HOST_SHARE/MAX_CPU"));
 		this.setHypervisor(host.xpath("TEMPLATE/HYPERVISOR"));
 	}
+	@Override
+	public String getMemoryFree(){
+		return host.xpath("HOST_SHARE/FREE_MEM");
+	}
+	@Override
+	public String getProcessorFree(){
+		return host.xpath("HOST_SHARE/FREE_CPU");
+	}
+	@Override
+	public String getMemoryUsed(){
+		return host.xpath("HOST_SHARE/USED_MEM");
+	}
+	@Override
+	public String getProcessorUsed(){
+		return host.xpath("HOST_SHARE/USED_CPU");
+	}
+	@Override
+	public String getHypervisor(){
+		return host.xpath("TEMPLATE/HYPERVISOR");
+	}
 }

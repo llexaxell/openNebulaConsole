@@ -55,17 +55,19 @@ public class MainController {
 	
 	public void showMenu() throws IOException{
 		Runtime.getRuntime().exec("clear");
-		System.out.println("Que voulez faire ?");
+		System.out.println("\n\nQue voulez faire ?");
 		System.out.println("1) Afficher le nombre de machines virtuelles hébergées sur l’infrastructure");
 		System.out.println("2) Afficher le détail de chaque machine virtuelle");
-		System.out.println("3) Afficher le nombre de nœuds");
-		System.out.println("4) Afficher le détail de chaque nœud");
+		System.out.println("3) Afficher le nombre de noeuds");
+		System.out.println("4) Afficher le détail de chaque noeud");
+		System.out.println("5) Changer d'utilisateur");
+		System.out.println("6) Quitter");
 	
-		
 		String answer = askQuestion("Choix : ");
 		launchQueryPrincipalMenu(answer);
 	}
 	public void showVmMenu() throws IOException {
+		System.out.println("\n\n");
 		System.out.println("1) Suspendre l’exécution d’une machine virtuelle donnée");
 		System.out.println("2) Reprendre l’exécution d’une machine virtuelle donnée");
 		System.out.println("3) Migrer à chaud une machine virtuelle");
@@ -90,6 +92,14 @@ public class MainController {
 			break;
 		case 4:
 			describeInfra.describeAllNodes();
+			break;
+		case 5:
+			this.getUserControl().createUser();
+			this.getUserControl().connexion();
+			this.showMenu();
+			break;
+		case 6:
+			System.exit(0);
 			break;
 		default:
 			this.showMenu();

@@ -8,10 +8,7 @@ public class Vm {
 	private VirtualMachine vm;
 	private String statut;
 	private String name;
-	private String Mem;
-	private String CPU;
-	private String nameNodeParent;
-	private String idNodeParent;
+
 
 	//Build the instance
 	public Vm(VirtualMachine vm){
@@ -19,10 +16,6 @@ public class Vm {
 		this.id = vm.getId();
 		this.statut = vm.lcmStateStr();
 		this.name = vm.getName();
-		this.setMem(vm.xpath("MEMORY"));
-		this.setCPU(vm.xpath("CPU"));
-		this.setIdNodeParent(vm.xpath("HISTORY_RECORDS/HISTORY/HID"));
-		this.setNameNodeParent(vm.xpath("HISTORY_RECORDS/HISTORY/HOSTNAME"));
 	}
 	//Actions on the instance
 	/**
@@ -80,20 +73,13 @@ public class Vm {
 	}
 
 	public String getNameNodeParent() {
-		return nameNodeParent;
-	}
-
-	public void setNameNodeParent(String nameNodeParent) {
-		this.nameNodeParent = nameNodeParent;
+		return this.vm.xpath("HISTORY_RECORDS/HISTORY/HOSTNAME");
 	}
 
 	public String getIdNodeParent() {
-		return idNodeParent;
+		return this.vm.xpath("HISTORY_RECORDS/HISTORY/HID");
 	}
 
-	public void setIdNodeParent(String idNodeParent) {
-		this.idNodeParent = idNodeParent;
-	}
 	public VirtualMachine getVm() {
 		return vm;
 	}
@@ -101,15 +87,13 @@ public class Vm {
 		this.vm = vm;
 	}
 	public String getMem() {
-		return Mem;
+		return this.vm.xpath("MEMORY");
 	}
 	public void setMem(String mem) {
-		Mem = mem;
 	}
 	public String getCPU() {
-		return CPU;
+		return this.vm.xpath("CPU");
 	}
 	public void setCPU(String cPU) {
-		CPU = cPU;
 	}
 }

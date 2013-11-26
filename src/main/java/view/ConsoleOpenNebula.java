@@ -23,6 +23,7 @@ public class ConsoleOpenNebula {
 		} else {
 			controller.getUserControl().createUser();
 			controller.getUserControl().connexion();
+			controller.showMenu();
 		}
 	}
 }

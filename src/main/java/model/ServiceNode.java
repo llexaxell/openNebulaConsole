@@ -26,6 +26,4 @@ public class ServiceNode extends AbstractNode{
 	public void setNodeImpl(List<NodeImpl> nodeImpl) {
 		this.nodeImpl = nodeImpl;
 	}
-	
-	
 }

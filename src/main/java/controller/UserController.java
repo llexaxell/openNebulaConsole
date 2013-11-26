@@ -55,7 +55,7 @@ public class UserController {
 			System.out.println("| OPEN NEBULA CONSOLE |");
 			System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷\n\n");
 			if(client.get_version().getErrorMessage()==null){
-				System.out.println("Version =" +client.get_version().getMessage());
+				System.out.println("Version : " +client.get_version().getMessage());
 			} else {
 				System.out.println("Error message = " +client.get_version().getErrorMessage());
 			}
@@ -89,7 +89,6 @@ public class UserController {
 		VirtualMachinePool pool = new VirtualMachinePool(client);
 		//initialise the pool
 		pool.info();
-		System.out.println(pool.info().getMessage());
 		//Bind the information for the nodes
 		HostPool poolNode = new HostPool(client);
 		//initialise the pool

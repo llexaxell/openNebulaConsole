@@ -90,5 +90,4 @@ public abstract class AbstractNode {
 	public void setVms(List<Vm> listVm) {
 		this.vms = listVm;
 	}
-	
 }
