@@ -18,8 +18,11 @@ public class ConsoleOpenNebula {
 		
 		MainController controller = new MainController(); 
 		controller.getUserControl().createUser();
-		controller.getUserControl().connexion();
-		controller.showMenu();
-		
+		if(controller.getUserControl().connexion()){
+			controller.showMenu();
+		} else {
+			controller.getUserControl().createUser();
+			controller.getUserControl().connexion();
+		}
 	}
 }

@@ -21,6 +21,8 @@ public class Vm {
 		this.name = vm.getName();
 		this.setMem(vm.xpath("MEMORY"));
 		this.setCPU(vm.xpath("CPU"));
+		this.setIdNodeParent(vm.xpath("HISTORY_RECORDS/HISTORY/HID"));
+		this.setNameNodeParent(vm.xpath("HISTORY_RECORDS/HISTORY/HOSTNAME"));
 	}
 	//Actions on the instance
 	/**

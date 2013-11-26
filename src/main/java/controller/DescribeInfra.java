@@ -50,6 +50,8 @@ public class DescribeInfra {
 			    out += "--------------------------------------------------\n";
 			    out += " + Mémoire : "+ vm.getMem() +"o | CPU : " +vm.getCPU() +"% +\n"; 
 			    out += "--------------------------------------------------\n";
+			    out += "Noeud parent : " + vm.getNameNodeParent() + " (id : "+vm.getIdNodeParent()+")";
+			    
 			}
 			System.out.println(out);
 		}else {
@@ -80,7 +82,7 @@ public class DescribeInfra {
 		System.out.println("Nombre d'instances ; "+nodes.size() +"\n");
 		if(nodes.size()>0){
 			for (NodeImpl node : nodes){
-				out += "----- Node (id: " + node.getId() +")\n";
+				out += "----- Node (id : " + node.getId() +")\n";
 			    out += "Nom du noeud  : " + node.getName() +"\n";
 			    out += "Statut du noeud : " + node.getStatut() +"\n";
 			    out += "--------------------------------------------------------\n";

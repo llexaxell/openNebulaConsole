@@ -33,22 +33,27 @@ public class UserController {
 	 * Scenario of sign-in a new user
 	 */
 	public void createUser(){
-		String userName = mainController.askQuestion("Username ?");
-		String passWord = mainController.askQuestion("Password ?");
+		System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷");
+		System.out.println("| OPEN NEBULA CONSOLE |");
+		System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷\n\n");
+		
+		String userName = MainController.askQuestion("Identifiant ?");
+		String passWord = MainController.askQuestion("Mot de passe ?");
 		User user = new User(userName, passWord);
 		mainController.getModel().setUser(user);
 	}
 
-	public void connexion(){
+	public boolean connexion(){
 		User user = mainController.getModel().getUser();
+		boolean result = false;
 		try {
-			System.out.println(user.getUserName()+":"+user.getPassWord());
+			String hostAdress = MainController.askQuestion("Host adress ?");
 			Client client = new Client(user.getUserName()+":"+user.getPassWord(), HOST_ADRESS);
 			ServiceNode mainNode = this.mainController.getModel().getNodeParent();
 			
 			System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷");
 			System.out.println("| OPEN NEBULA CONSOLE |");
-			System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷");
+			System.out.println("÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷\n\n");
 			if(client.get_version().getErrorMessage()==null){
 				System.out.println("Version =" +client.get_version().getMessage());
 			} else {
@@ -60,11 +65,13 @@ public class UserController {
 				//Bind the instance properties to the model
 				mainNode.setIp(HOST_ADRESS);
 				exploreModel(client, mainNode);
+				result = true;
 				System.out.println("Connexion success !");
 			} 
 		} catch (ClientConfigurationException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
 	/**
@@ -78,13 +85,11 @@ public class UserController {
 		HostPool host = new HostPool(client);
 		mainNode.setNumberVm(host.getLength());
 		
-		//mainNode.setMemoryFree(host.getById(0).xpath("HOST_SHARE/FREE_MEM"));
-
-		//System.out.println("info : "+host.info().getMessage());
 		// VirtualPoolMachine
 		VirtualMachinePool pool = new VirtualMachinePool(client);
 		//initialise the pool
 		pool.info();
+		System.out.println(pool.info().getMessage());
 		//Bind the information for the nodes
 		HostPool poolNode = new HostPool(client);
 		//initialise the pool
