@@ -16,6 +16,7 @@ public abstract class AbstractNode {
 	private String processorFree;
 	private String memoryFree;
 	private List<Vm> vms;
+
 	
 	public String getId() {
 		return id;

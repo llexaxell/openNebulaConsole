@@ -9,6 +9,9 @@ public class Vm {
 	private String statut;
 	private String name;
 	private String freeMem;
+	private String usedMem;
+	private String freeCPU;
+	private String usedCPU;
 	private String nameNodeParent;
 	private String idNodeParent;
 
@@ -19,6 +22,9 @@ public class Vm {
 		this.statut = vm.lcmStateStr();
 		this.name = vm.getName();
 		this.freeMem = vm.xpath("HOST_SHARE/FREE_MEM");
+		this.setUsedMem(vm.xpath("HOST_SHARE/USED_MEM"));
+		this.setFreeCPU(vm.xpath("HOST_SHARE/FREE_CPU"));
+		this.setUsedCPU(vm.xpath("HOST_SHARE/USED_CPU"));
 		
 	}
 	//Actions on the instance
@@ -104,6 +110,24 @@ public class Vm {
 	}
 	public void setVm(VirtualMachine vm) {
 		this.vm = vm;
+	}
+	public String getUsedMem() {
+		return usedMem;
+	}
+	public void setUsedMem(String usedMem) {
+		this.usedMem = usedMem;
+	}
+	public String getFreeCPU() {
+		return freeCPU;
+	}
+	public void setFreeCPU(String freeCPU) {
+		this.freeCPU = freeCPU;
+	}
+	public String getUsedCPU() {
+		return usedCPU;
+	}
+	public void setUsedCPU(String usedCPU) {
+		this.usedCPU = usedCPU;
 	}
 	
 	

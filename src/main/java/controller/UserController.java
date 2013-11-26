@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import model.NodeImpl;
 import model.ServiceNode;
 import model.User;
 import model.Vm;
 
 import org.opennebula.client.Client;
 import org.opennebula.client.ClientConfigurationException;
+import org.opennebula.client.host.Host;
 import org.opennebula.client.host.HostPool;
 import org.opennebula.client.vm.VirtualMachine;
 import org.opennebula.client.vm.VirtualMachinePool;
+
 
 
 public class UserController {
@@ -81,6 +84,9 @@ public class UserController {
 		// VirtualPoolMachine
 		VirtualMachinePool pool = new VirtualMachinePool(client);
 
+		//Bind the information for the nodes
+		HostPool poolNode = new HostPool(client);
+		
 		//Bind the information for the vms
 		Iterator<VirtualMachine> it = pool.iterator();
 		List<Vm> listVm = new ArrayList<Vm>();
@@ -92,5 +98,17 @@ public class UserController {
 			listVm.add(vmModel);
 		}
 		mainNode.setVms(listVm);
+		
+		
+		Iterator<Host> itHost = poolNode.iterator();
+		List<NodeImpl> listNode = new ArrayList<NodeImpl>();
+		while(itHost.hasNext()){
+			Host h = itHost.next();
+			
+			NodeImpl impl = new NodeImpl(h);
+			listNode.add(impl);
+		}
+		mainNode.setHypervisor(mainNode.getId());
+		mainNode.setNodeImpl(listNode);
 	}
 }
