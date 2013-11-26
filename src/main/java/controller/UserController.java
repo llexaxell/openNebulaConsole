@@ -100,10 +100,6 @@ public class UserController {
 		}
 		mainNode.setVms(listVm);
 		
-		System.out.println(pool.info().getMessage());
-		System.out.println(poolNode.info().getMessage());
-		
-		
 		Iterator<Host> itHost = poolNode.iterator();
 		List<NodeImpl> listNode = new ArrayList<NodeImpl>();
 		while(itHost.hasNext()){

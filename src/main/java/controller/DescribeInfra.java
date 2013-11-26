@@ -88,6 +88,7 @@ public class DescribeInfra {
 			    out += "--------------------------------------------------------\n";
 			    out += "+ Processeur libre : "+ node.getProcessorFree() +" % | Processeur utilisé : " +node.getProcessorUsed() +"%   +\n"; 
 			    out += "--------------------------------------------------------\n";
+			    out += "Hyperviseur : "+node.getHypervisor()+"\n";
 			}
 			System.out.println(out);
 		}else {
@@ -96,7 +97,11 @@ public class DescribeInfra {
 		mainController.showMenu();
 	}
 
-
+	/**
+	 * Migration de la vm
+	 * @param vmId
+	 * @throws IOException
+	 */
 	public void migrateVm(String vmId) throws IOException {
 		String nodes ="";
 		for (NodeImpl node : this.mainController.getModel().getNodeParent().getNodeImpl()){
@@ -119,7 +124,11 @@ public class DescribeInfra {
 		mainController.showMenu();
 	}
 
-
+	/**
+	 * Delete la VM
+	 * @param vmId
+	 * @throws IOException
+	 */
 	public void deleteVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
@@ -134,7 +143,11 @@ public class DescribeInfra {
 		mainController.showMenu();
 	}
 
-
+	/**
+	 * Resume the VM
+	 * @param vmId
+	 * @throws IOException
+	 */
 	public void unPauseActiviteVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
@@ -149,7 +162,11 @@ public class DescribeInfra {
 		mainController.showMenu();
 	}
 
-
+	/**
+	 * Suspend the VM
+	 * @param vmId
+	 * @throws IOException
+	 */
 	public void breakActivityVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){

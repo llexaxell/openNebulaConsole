@@ -17,5 +17,6 @@ public class NodeImpl extends AbstractNode {
 		this.setProcessorUsed(host.xpath("HOST_SHARE/USED_CPU"));
 		this.setMemoryInformation(host.xpath("HOST_SHARE/MAX_MEM"));
 		this.setProcessorInformation(host.xpath("HOST_SHARE/MAX_CPU"));
+		this.setHypervisor(host.xpath("TEMPLATE/HYPERVISOR"));
 	}
 }

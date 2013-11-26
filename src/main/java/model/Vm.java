@@ -21,7 +21,6 @@ public class Vm {
 		this.name = vm.getName();
 		this.setMem(vm.xpath("MEMORY"));
 		this.setCPU(vm.xpath("CPU"));
-		
 	}
 	//Actions on the instance
 	/**
