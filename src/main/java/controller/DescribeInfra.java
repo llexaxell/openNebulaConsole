@@ -3,6 +3,9 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.opennebula.client.host.Host;
+
+import model.NodeImpl;
 import model.Vm;
 
 public class DescribeInfra {
@@ -41,35 +44,44 @@ public class DescribeInfra {
 		if(vms.size()>0){
 			for (Vm vm : vms){
 				out += "VM " + vm.getId() +" -------------------\n";
-			    out += "Nom de la VM : " + vm.getName() +"\n";;
-			    out += "Statut de la VM : " + vm.getStatut() +"\n";; 
+			    out += "Nom de la VM : " + vm.getName() +"\n";
+			    out += "Statut de la VM : " + vm.getStatut() +"\n";
 			    out += "Mémoire libre : "+ vm.getFreeMem() +" | Mémoire utilisé : " +vm.getUsedMem();
 			}
 			System.out.println(out);
 		}else {
 			System.out.println("Pas d'instance");
 		}
-		mainController.showMenu();
+		mainController.showVmMenu();
 	}
 	
-	//Getters and settters
-	public MainController getMainController() {
-		return mainController;
-	}
-
-	public void setMainController(MainController mainController) {
-		this.mainController = mainController;
-	}
-
-
+	/**
+	 * Get the number of node
+	 */
 	public void getNumberOfNode() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Nombre de nodes : "+this.mainController.getModel().getNodesChildren().size());
 	}
 
 
-	public void describeAllNodes() {
-		// TODO Auto-generated method stub
+	public void describeAllNodes() throws IOException {
+		String out = "";
+		List<NodeImpl> nodes = this.mainController.getModel().getNodeParent().getNodeImpl();
+		System.out.println("-------------------------------------");
+		System.out.println("Descriptions des nodes");
+		System.out.println("Nombre d'instances ; "+nodes.size());
+		if(nodes.size()>0){
+			for (NodeImpl node : nodes){
+				out += "Node " + node.getId() +" -------------------\n";
+			    out += "Nom du noeud  : " + node.getName() +"\n";
+			    out += "Statut du noeud : " + node.getStatut() +"\n"; 
+			    out += "Mémoire libre : "+ node.getMemoryFree() +" | Mémoire utilisé : " +node.getMemoryUsed() +"\n"; 
+			    out += "Processeur libre : "+ node.getProcessorFree() +" | Processeur utilisé : " +node.getProcessorUsed() +"\n"; 
+			}
+			System.out.println(out);
+		}else {
+			System.out.println("Pas de noeud");
+		}
+		mainController.showMenu();
 		
 	}
 
@@ -96,6 +108,18 @@ public class DescribeInfra {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//Getters and settters
+	public MainController getMainController() {
+		return mainController;
+	}
+
+	public void setMainController(MainController mainController) {
+		this.mainController = mainController;
+	}
+
+
+	
 
 	
 }
