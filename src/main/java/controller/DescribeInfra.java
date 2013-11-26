@@ -82,31 +82,61 @@ public class DescribeInfra {
 			System.out.println("Pas de noeud");
 		}
 		mainController.showMenu();
-		
 	}
 
 
 	public void migrateVm(String vmId) {
-		// TODO Auto-generated method stub
-		
+		String idNode = MainController.askQuestion("Vers quel noeud migrer la vm ? ");
+		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
+		for (Vm vm : vms){
+			if (vmId == vm.getId()){
+				vm.getVm().migrate(Integer.valueOf(idNode));
+				System.out.println("Instance "+ vmId + "migrée vers le noeud "+idNode);
+				break;
+			} else {
+				System.out.println("Instance non trouvée");
+			}
+		}
 	}
 
 
 	public void deleteVm(String vmId) {
-		// TODO Auto-generated method stub
-		
+		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
+		for (Vm vm : vms){
+			if (vmId == vm.getId()){
+				vm.getVm().delete();
+				System.out.println("Instance "+ vmId + "terminée");
+				break;
+			}
+		}
 	}
 
 
 	public void unPauseActiviteVm(String vmId) {
-		// TODO Auto-generated method stub
-		
+		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
+		for (Vm vm : vms){
+			if (vmId == vm.getId() && vm.getVm().state()==0){
+				vm.getVm().release();
+				System.out.println("Instance "+ vmId + "relachée");
+				break;
+			} else {
+				System.out.println("Instance en cours ou non existante");
+			}
+		}
 	}
 
 
 	public void breakActivityVm(String vmId) {
-		// TODO Auto-generated method stub
-		
+		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
+		for (Vm vm : vms){
+			if (vmId == vm.getId() && vm.getVm().state()==0){
+				vm.getVm().hold();
+				System.out.println("Instance "+ vmId + "en pause");
+				break;
+			} else {
+				System.out.println("Instance déjà en pause ou non existante");
+			}
+		}
 	}
 	
 	//Getters and settters

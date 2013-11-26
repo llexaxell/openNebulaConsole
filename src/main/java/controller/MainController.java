@@ -39,7 +39,7 @@ public class MainController {
 	 * @param question
 	 * @return
 	 */
-	public String askQuestion(String question){
+	public static String askQuestion(String question){
 		System.out.println(question);
 		String answer = "";
 		try{
