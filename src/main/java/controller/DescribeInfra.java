@@ -3,8 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import org.opennebula.client.host.Host;
-
 import model.NodeImpl;
 import model.Vm;
 
