@@ -9,7 +9,6 @@ public class Infrastructure {
 	private User user;
 	private ServiceNode nodeParent;
 	private List<NodeImpl> nodesChildren;
-	private List<Vm> vms;
 	private MainController controller;
 	
 	//Constructors
@@ -18,16 +17,14 @@ public class Infrastructure {
 		this.user = null;
 		this.nodeParent = null;
 		this.nodesChildren = null;
-		this.vms = null;
 		this.controller = null;
 	}
 
 
 	public Infrastructure(MainController controller){
 		this.user = null;
-		this.nodeParent = null;
+		this.nodeParent = new ServiceNode();
 		this.nodesChildren = null;
-		this.vms = null;
 		this.controller = controller;
 	}
 	
@@ -55,15 +52,6 @@ public class Infrastructure {
 	public void setNodesChildren(List<NodeImpl> nodesChildren) {
 		this.nodesChildren = nodesChildren;
 	}
-
-	public List<Vm> getVms() {
-		return vms;
-	}
-
-	public void setVms(List<Vm> vms) {
-		this.vms = vms;
-	}
-
 
 	public MainController getController() {
 		return controller;

@@ -1,26 +1,109 @@
 package model;
 
-public class Vm {
+import org.opennebula.client.vm.VirtualMachine;
 
-	private String name;
+public class Vm {
+	
+	private String id;
+	private VirtualMachine vm;
 	private String statut;
+	private String name;
+	private String freeMem;
 	private String nameNodeParent;
 	private String idNodeParent;
 
+	//Build the instance
+	public Vm(VirtualMachine vm){
+		this.setVm(vm);
+		this.id = vm.getId();
+		this.statut = vm.lcmStateStr();
+		this.name = vm.getName();
+		this.freeMem = vm.xpath("HOST_SHARE/FREE_MEM");
+		
+	}
+	//Actions on the instance
+	/**
+	 * Hold an instance
+	 */
 	public void pauseInstance (){
-		
+		this.vm.hold();
 	}
 	
+	/**
+	 * Release the instance
+	 */
 	public void unPauseInstance (){
-		
+		this.vm.release();
 	}
 	
-	public void migrateInstance(){
-		
+	/**
+	 * Migrate an instance to another host
+	 * @param hostId
+	 */
+	public void migrateInstance(int hostId){
+		this.vm.migrate(hostId);
 	}
 	
+	/**
+	 * Delete the instance
+	 */
 	public void killInstance(){
-		
+		this.vm.delete();
+	}
+
+	//Getters and setters
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getFreeMem() {
+		return freeMem;
+	}
+
+	public void setFreeMem(String freeMem) {
+		this.freeMem = freeMem;
+	}
+
+	public String getNameNodeParent() {
+		return nameNodeParent;
+	}
+
+	public void setNameNodeParent(String nameNodeParent) {
+		this.nameNodeParent = nameNodeParent;
+	}
+
+	public String getIdNodeParent() {
+		return idNodeParent;
+	}
+
+	public void setIdNodeParent(String idNodeParent) {
+		this.idNodeParent = idNodeParent;
+	}
+	public VirtualMachine getVm() {
+		return vm;
+	}
+	public void setVm(VirtualMachine vm) {
+		this.vm = vm;
 	}
 	
 	

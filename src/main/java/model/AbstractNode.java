@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public abstract class AbstractNode {
 
 	private String id;
@@ -13,7 +15,7 @@ public abstract class AbstractNode {
 	private String memoryUsed;
 	private String processorFree;
 	private String memoryFree;
-	
+	private List<Vm> vms;
 	
 	public String getId() {
 		return id;
@@ -80,6 +82,12 @@ public abstract class AbstractNode {
 	}
 	public void setMemoryFree(String memoryFree) {
 		this.memoryFree = memoryFree;
+	}
+	public List<Vm> getVms() {
+		return vms;
+	}
+	public void setVms(List<Vm> listVm) {
+		this.vms = listVm;
 	}
 	
 }
