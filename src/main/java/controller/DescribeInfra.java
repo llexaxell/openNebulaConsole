@@ -62,7 +62,10 @@ public class DescribeInfra {
 		mainController.showMenu();
 	}
 
-
+	/**
+	 * Describe all the instance
+	 * @throws IOException
+	 */
 	public void describeAllNodes() throws IOException {
 		String out = "";
 		List<NodeImpl> nodes = this.mainController.getModel().getNodeParent().getNodeImpl();

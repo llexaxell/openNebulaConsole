@@ -82,15 +82,17 @@ public class UserController {
 
 		//System.out.println("info : "+host.info().getMessage());
 		// VirtualPoolMachine
-		VirtualMachinePool pool = new VirtualMachinePool(client);
 
+		VirtualMachinePool pool = new VirtualMachinePool(client);
+		//initialise the pool
+		pool.info();
 		//Bind the information for the nodes
 		HostPool poolNode = new HostPool(client);
-		
+		//initialise the pool
+		poolNode.info();
 		//Bind the information for the vms
 		Iterator<VirtualMachine> it = pool.iterator();
 		List<Vm> listVm = new ArrayList<Vm>();
-		
 		//Instanciate the pool of vm 
 		while (it.hasNext()) {
 			VirtualMachine vm = it.next();
