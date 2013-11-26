@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.MainController;
@@ -15,8 +16,8 @@ public class Infrastructure {
 	
 	public Infrastructure() {
 		this.user = null;
-		this.nodeParent = null;
-		this.nodesChildren = null;
+		this.nodeParent = new ServiceNode();
+		this.nodesChildren = new ArrayList<NodeImpl>();
 		this.controller = null;
 	}
 
@@ -24,7 +25,7 @@ public class Infrastructure {
 	public Infrastructure(MainController controller){
 		this.user = null;
 		this.nodeParent = new ServiceNode();
-		this.nodesChildren = null;
+		this.nodesChildren = new ArrayList<NodeImpl>();
 		this.controller = controller;
 	}
 	

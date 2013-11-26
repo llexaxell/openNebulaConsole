@@ -55,9 +55,11 @@ public class DescribeInfra {
 	
 	/**
 	 * Get the number of node
+	 * @throws IOException 
 	 */
-	public void getNumberOfNode() {
-		System.out.println("Nombre de nodes : "+this.mainController.getModel().getNodesChildren().size());
+	public void getNumberOfNode() throws IOException {
+		System.out.println("Nombre de nodes : "+this.mainController.getModel().getNodeParent().getNodeImpl().size());
+		mainController.showMenu();
 	}
 
 
@@ -83,7 +85,7 @@ public class DescribeInfra {
 	}
 
 
-	public void migrateVm(String vmId) {
+	public void migrateVm(String vmId) throws IOException {
 		String idNode = MainController.askQuestion("Vers quel noeud migrer la vm ? ");
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
@@ -95,10 +97,11 @@ public class DescribeInfra {
 				System.out.println("Instance non trouvée");
 			}
 		}
+		mainController.showMenu();
 	}
 
 
-	public void deleteVm(String vmId) {
+	public void deleteVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
 			if (vmId == vm.getId()){
@@ -107,10 +110,11 @@ public class DescribeInfra {
 				break;
 			}
 		}
+		mainController.showMenu();
 	}
 
 
-	public void unPauseActiviteVm(String vmId) {
+	public void unPauseActiviteVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
 			if (vmId == vm.getId() && vm.getVm().state()==0){
@@ -121,10 +125,11 @@ public class DescribeInfra {
 				System.out.println("Instance en cours ou non existante");
 			}
 		}
+		mainController.showMenu();
 	}
 
 
-	public void breakActivityVm(String vmId) {
+	public void breakActivityVm(String vmId) throws IOException {
 		List<Vm> vms = this.mainController.getModel().getNodeParent().getVms();
 		for (Vm vm : vms){
 			if (vmId == vm.getId() && vm.getVm().state()==0){
@@ -135,6 +140,7 @@ public class DescribeInfra {
 				System.out.println("Instance déjà en pause ou non existante");
 			}
 		}
+		mainController.showMenu();
 	}
 	
 	//Getters and settters
@@ -145,9 +151,4 @@ public class DescribeInfra {
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
-
-
-	
-
-	
 }

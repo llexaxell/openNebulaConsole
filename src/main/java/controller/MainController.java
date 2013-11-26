@@ -106,18 +106,22 @@ public class MainController {
 		//Suspendre l'activité d'une VM
 		case 1:
 			describeInfra.breakActivityVm(vmId);
+			this.showMenu();
 			break;
 		//Reprise de l'activité pour la vm
 		case 2:
 			describeInfra.unPauseActiviteVm(vmId);
+			this.showMenu();
 			break;
 		//Migrer à chaud une machine virtuelle
 		case 3:
 			describeInfra.deleteVm(vmId);
+			this.showMenu();
 			break;
 		case 4:
 			describeInfra.migrateVm(vmId);
-			break;	
+			this.showMenu();
+			break;
 		default:
 			this.showMenu();
 			break;

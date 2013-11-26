@@ -104,7 +104,6 @@ public class UserController {
 		List<NodeImpl> listNode = new ArrayList<NodeImpl>();
 		while(itHost.hasNext()){
 			Host h = itHost.next();
-			
 			NodeImpl impl = new NodeImpl(h);
 			listNode.add(impl);
 		}
